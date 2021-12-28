@@ -16,13 +16,13 @@ public class Java7ParallelAggregator implements Aggregator {
      * В конце суммируем результат.
      */
     @Override
-    public long sum(List<Integer> numbers) {
+    public int sum(List<Integer> numbers) {
 
-        long result = 0;
-        Future<Long> res1 = new FutureTask<>(new Callable<Long>() {
+        int result = 0;
+        Future<Integer> res1 = new FutureTask<>(new Callable<Integer>() {
             @Override
-            public Long call() {
-                long res = 0;
+            public Integer call() {
+                int res = 0;
                 for (int i = 0; i < numbers.size() / 2; i++) {
                     res += numbers.get(i);
                 }
@@ -30,10 +30,10 @@ public class Java7ParallelAggregator implements Aggregator {
             }
         });
 
-        Future<Long> res2 = new FutureTask<>(new Callable<Long>() {
+        Future<Integer> res2 = new FutureTask<>(new Callable<Integer>() {
             @Override
-            public Long call() {
-                long res = 0;
+            public Integer call() {
+                int res = 0;
                 for (int i = numbers.size() / 2; i < numbers.size(); i++) {
                     res += numbers.get(i);
                 }

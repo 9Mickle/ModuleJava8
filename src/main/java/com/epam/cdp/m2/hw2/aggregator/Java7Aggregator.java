@@ -7,8 +7,8 @@ import java.util.*;
 public class Java7Aggregator implements Aggregator {
 
     @Override
-    public long sum(List<Integer> numbers) {
-        long result = 0;
+    public int sum(List<Integer> numbers) {
+        int result = 0;
         for (int number : numbers) {
             result += number;
         }

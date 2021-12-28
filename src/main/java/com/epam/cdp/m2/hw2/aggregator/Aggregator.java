@@ -13,7 +13,7 @@ public interface Aggregator {
      * @param numbers list of integers to sum up
      * @return sum
      */
-    long sum(List<Integer> numbers); // simple method just to warm up :)
+    int sum(List<Integer> numbers); // simple method just to warm up :)
 
     /**
      * Use this method to find words frequency.

@@ -37,11 +37,6 @@ public abstract class JavaAggregatorSumTest {
     @Parameterized.Parameters
     public static List<Object[]> data() {
         List<Object[]> data = new ArrayList<>();
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i <= 10_000_000L; i++) {
-            numbers.add(i);
-        }
-        data.add(new Object[]{numbers, 50000005000000L});
         data.add(new Object[]{asList(1, 2, 3, 4, 5, 6, 7, 8), 36});
         data.add(new Object[]{asList(10, -10, 3), 3});
         data.add(new Object[]{emptyList(), 0});

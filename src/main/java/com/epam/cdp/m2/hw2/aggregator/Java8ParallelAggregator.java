@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 public class Java8ParallelAggregator implements Aggregator {
 
     @Override
-    public long sum(List<Integer> numbers) {
-        return numbers.parallelStream().mapToLong(a -> a).sum();
+    public int sum(List<Integer> numbers) {
+        return numbers.parallelStream().reduce(0, Integer::sum);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Java8ParallelAggregator implements Aggregator {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .parallelStream()
-                .map(e -> new Pair<String, Long>(e.getKey(), e.getValue()))
+                .map(e -> new Pair<>(e.getKey(), e.getValue()))
                 .sorted((o1, o2) -> {
                     long compare = o2.getValue() - o1.getValue();
                     if (compare == 0) {
