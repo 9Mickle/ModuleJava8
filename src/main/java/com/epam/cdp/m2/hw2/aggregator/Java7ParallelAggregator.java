@@ -10,6 +10,11 @@ import java.util.concurrent.FutureTask;
 
 public class Java7ParallelAggregator implements Aggregator {
 
+    /**
+     * Разбиваем задачу на 2 потока. Первый - res1 сортирует первую половину листа,
+     * Второй - res2 сортирует вторую половину листа.
+     * В конце суммируем результат.
+     */
     @Override
     public long sum(List<Integer> numbers) {
 
@@ -46,6 +51,10 @@ public class Java7ParallelAggregator implements Aggregator {
         return result;
     }
 
+    /**
+     * Здесь я не придумал как разбить задачу на потоки.
+     * Здесь таже реализация как в Java7Aggregator.
+     */
     @Override
     public List<Pair<String, Long>> getMostFrequentWords(List<String> words, long limit) {
         List<Pair<String, Long>> list = new ArrayList<>();
@@ -79,6 +88,14 @@ public class Java7ParallelAggregator implements Aggregator {
         return result;
     }
 
+    /**
+     * Разбиваем задачу на 3 потока.
+     * Первый - upCaseFirstHalf берет первую половину листа и переводит его слова в верхний регистр.
+     * Второй - upCaseSecondHalf берет вторую половину листа.
+     * Третий - getDuplicates ждёт выполнения работы первых двух потоков и берет из листа слова, которые встречаются больше 1 раза.
+     * Сортируем лист.
+     * Выдаем результат с указанным лимитом.
+     */
     @Override
     public List<String> getDuplicates(List<String> words, long limit) {
 
